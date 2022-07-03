@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var con = mysql.createConnection({host: "127.0.0.1",user: "root",password: "",database:"hotel"});
+var con = mysql.createConnection({host: "127.0.0.1  ",user: "root",password: "Atul@#$%^&*0",database:"hotel"});
 const config = {}
 config.mysql = mysql,
 config.port = 5003,
