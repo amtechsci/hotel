@@ -1,0 +1,50 @@
+
+/* Adjustment */
+.gallery-caption {
+    font-weight: normal;
+}
+
+.sticky {
+    font-weight: normal;
+}
+
+/* Alignment */
+.aligncenter {
+    text-align: center;
+}
+
+.alignleft {
+    text-align: left;
+}
+
+.alignright {
+    text-align: right;
+}
+
+.bypostauthor {
+    color: rgba(105, 49, 249, 1);
+}
+
+.screen-reader-text {
+    display: none;
+}
+
+.wp-caption-text {
+    color: rgba(105, 49, 249, 1);
+}
+
+.wp-caption {
+    max-width: 100%;
+}
+
+.multiselect, .multiselect2, .multiselect3 {
+    background: unset!important;
+}
+
+.buttons-html5{
+padding:7px 20px;
+color:#fff;
+background:#000;
+border:none;
+border-radius:5px;
+}
