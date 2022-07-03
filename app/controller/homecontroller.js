@@ -303,7 +303,7 @@ let qu;
 exports.detailhotel = function(req, res) {
 session=req.session;
 let user = '';
-var id = req.params.id ?? 2;
+var id = req.params.id ? req.params.id:2
 config.con.query("SELECT hotel_room.*, hotel.city, hotel.hotel_name, hotel.hotel_images FROM `hotel_room` INNER JOIN hotel ON hotel_room.hotel_id=hotel.id WHERE hotel_room.id="+id,(err,hotel_room) => {
     if(hotel_room.length > 0){
         hotel_room = hotel_room[0];
