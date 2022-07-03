@@ -1,0 +1,23 @@
+<%- include('head'); -%>
+<div class="container">
+    <center>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <div class="card" style="background-image: linear-gradient(#009bff, #88dd85);">
+                    <div class="card-body">
+                        <p>Thankyou for contacting. We have received your message.<br>Will reach you soon.</p>
+                    </div>
+                    <div class="card-body">
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4"></div>
+        </div>
+    </center>
+</div>
+<script>
+    setInterval(function() {
+        window.location.replace('<%=APP_URL%>');
+}, 5000);
+</script>
