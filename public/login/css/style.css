@@ -1,0 +1,38 @@
+
+/* Adjustment */
+.gallery-caption {
+    font-weight: normal;
+}
+
+.sticky {
+    font-weight: normal;
+}
+
+/* Alignment */
+.aligncenter {
+    text-align: center;
+}
+
+.alignleft {
+    text-align: left;
+}
+
+.alignright {
+    text-align: right;
+}
+
+.bypostauthor {
+    color: rgba(105, 49, 249, 1);
+}
+
+.screen-reader-text {
+    display: none;
+}
+
+.wp-caption-text {
+    color: rgba(105, 49, 249, 1);
+}
+
+.wp-caption {
+    max-width: 100%;
+}
