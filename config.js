@@ -3,6 +3,6 @@ var con = mysql.createConnection({host: "hoteldb.c3teariwy0ra.us-west-2.rds.amaz
 const config = {}
 config.mysql = mysql,
 config.port = 5003,
-config.APP_URL = '54.201.12.52:'+config.port+'/',
+config.APP_URL = 'http://54.201.12.52:'+config.port+'/',
 config.con = con;
 module.exports = config;
