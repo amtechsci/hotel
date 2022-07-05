@@ -585,8 +585,7 @@ exports.booknow = function(req, res) {
     if(req.body.name !== undefined){
         config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `status`) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.mobile+"','"+req.body.country+"','"+req.body.address+"','"+req.body.city+"','"+req.body.additional+"','"+req.query.destination+"','"+req.query.hotel+"','"+req.query.checkin+"','"+req.query.checkout+"','"+req.query.room+"','"+req.query.room_id+"','pending')",(err,result) => {
             if(err) console.log(err);
-            console.log(result);
-            // res.redirect('booked');
+            res.redirect('booked');
         });
     }else{
     const date = require('date-and-time');
