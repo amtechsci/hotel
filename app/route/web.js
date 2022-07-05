@@ -34,6 +34,7 @@ app.post('/book-now', homecontroller.booknow);
 app.post('/booking', homecontroller.booking);
 app.post('/contact', homecontroller.contact);
 app.get('/booked', homecontroller.booked);
+app.get('/booked/:id', homecontroller.booked);
 app.get('/thankyou', homecontroller.thankyou);
 app.get('/loyalty-program', homecontroller.loyalty_program);
 app.get('/loyalty-program-buy/:id', homecontroller.loyalty_program_buy);

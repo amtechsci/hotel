@@ -545,7 +545,7 @@ exports.download_brochure = function(req, res) {
 }
 exports.booked = function(req, res) {
     session=req.session;
-                let user = '';
+    let user = '';
     if(session.user_id !== undefined){
         config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
             if(err){res.redirect('/logout');}else{
@@ -555,10 +555,10 @@ exports.booked = function(req, res) {
                     res.redirect('/logout');
                 }
             }
-            res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user});
+            res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id});
         });
     }else{
-        res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user});
+        res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id});
     }
 }
 exports.thankyou = function(req, res) {
@@ -585,7 +585,8 @@ exports.booknow = function(req, res) {
     if(req.body.name !== undefined){
         config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `status`) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.mobile+"','"+req.body.country+"','"+req.body.address+"','"+req.body.city+"','"+req.body.additional+"','"+req.query.destination+"','"+req.query.hotel+"','"+req.query.checkin+"','"+req.query.checkout+"','"+req.query.room+"','"+req.query.room_id+"','pending')",(err,result) => {
             if(err) console.log(err);
-            res.redirect('booked');
+            // console.log(result.insertId);
+            res.redirect('booked/'+result.insertId);
         });
     }else{
     const date = require('date-and-time');
