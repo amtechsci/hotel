@@ -166,14 +166,7 @@ h1, h2, h3, h4, h5, h6 {
           }
       }
 .find-quick-form {
-  /*background: url(../images/find-quick.png) no-repeat scroll center top;*/
-  /*background-color: rgba(0,0,0,0.4);*/
-  
-  /*background-size: cover;*/
-  /*color: #fff;*/
-  /*border-radius: 20px;*/
-  /*padding: 38px 55px 30px;*/
-    background: #6ea0e300;
+    background: #00000047;
     border-radius: 18px;
     box-shadow: 0 4px 30px rgb(0 0 0 / 10%);
     backdrop-filter: blur(2.7px);
