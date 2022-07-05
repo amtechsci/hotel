@@ -590,7 +590,6 @@ exports.booknow = function(req, res) {
     }else{
     const date = require('date-and-time');
     config.con.query("SELECT hotel_room.*,hotel.hotel_name,hotel.facilities,hotel.city,hotel.location FROM hotel_room INNER JOIN hotel ON hotel_room.hotel_id=hotel.id WHERE hotel_room.id='"+req.query.room_id+"'",(err,hotels) => {
-        // console.log(hotels[0]);
     if(session.user_id !== undefined){
         config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
             if(err){res.redirect('/logout');}else{
