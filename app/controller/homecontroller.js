@@ -612,7 +612,7 @@ exports.booking = function(req, res) {
     session=req.session;
     let user = '';
     if(req.body.name !== undefined){
-        config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `status`) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.mobile+"','"+req.body.country+"','"+req.body.address+"','"+req.body.city+"','"+req.body.additional+"','"+req.body.destination+"','"+req.body.hotel_id+"','"+req.body.checkin+"','"+req.body.checkout+"','"+req.body.room+"','"+req.body.room_id+"','pending')",(err,result) => {
+        config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `child`, `adults`, `status`) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.mobile+"','"+req.body.country+"','"+req.body.address+"','"+req.body.city+"','"+req.body.additional+"','"+req.body.destination+"','"+req.body.hotel_id+"','"+req.body.checkin+"','"+req.body.checkout+"','"+req.body.room+"','"+req.body.room_id+"','"+req.body.child+"','"+req.body.adults+"','pending')",(err,result) => {
             if(err) console.log(err);
             res.redirect('booked');
         });
@@ -625,9 +625,10 @@ exports.modify = function(req, res) {
     let user = '';
 if(req.body.booking_id){
     if(req.body.name !== undefined){
-        config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `adults`, `child`, `status`) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.mobile+"','"+req.body.country+"','"+req.body.address+"','"+req.body.city+"','"+req.body.additional+"','"+req.body.destination+"','"+req.body.hotel_id+"','"+req.body.checkin+"','"+req.body.checkout+"','"+req.body.room+"','"+req.body.room_id+"','"+req.body.adults+"','"+req.body.child+"','pending')",(err,result) => {
+        // res.redirect(444);
+        config.con.query("UPDATE `booking` SET `name`='"+req.body.name+"',`email`='"+req.body.email+"',`mobile`='"+req.body.mobile+"',`country`='"+req.body.country+"',`address`='"+req.body.address+"',`city`='"+req.body.city+"',`additional`='"+req.body.additional+"',`destination`='"+req.body.destination+"',`hotel_id`='"+req.body.hotel_id+"',`checkin`='"+req.body.checkin+"',`checkout`='"+req.body.checkout+"',`room`='"+req.body.room+"',`room_id`='"+req.body.room_id+"',`adults`='"+req.body.adults+"',`child`='"+req.body.child+"',`status`='"+req.body.status+"' WHERE id='"+req.body.booking_id+"'",(err,result) => {
             if(err) console.log(err);
-            res.redirect('booked');
+            res.redirect('/');
         });
     }else{
        var bookingId = req.body.booking_id;
@@ -643,6 +644,22 @@ if(req.body.booking_id){
             res.render('modify',{APP_URL : config.APP_URL,url:req.url,user:user,bookdetail:bookdetail});
         });
     }
+}
+}
+exports.cancle = function(req, res) {
+    session=req.session;
+    let user = '';
+if(req.params.id){
+       var bookingId = req.params.id;
+        config.con.query("UPDATE `booking` SET `status`='cancel' WHERE id='"+bookingId+"'",(err,result) => {
+            if(err) console.log(err);
+            if(result.length > 0){
+                var bookdetail = result[0];
+            }else{
+                res.return('No Booking Found');
+            }
+            res.render('modify',{APP_URL : config.APP_URL,url:req.url,user:user,bookdetail:bookdetail});
+        });
 }
 }
 exports.contact = function(req, res) {

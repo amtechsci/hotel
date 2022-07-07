@@ -40,6 +40,7 @@ app.get('/loyalty-program', homecontroller.loyalty_program);
 app.get('/loyalty-program-buy/:id', homecontroller.loyalty_program_buy);
 app.post('/loyalty_program_view/:id', homecontroller.loyalty_program_view);
 app.post('/modify', homecontroller.modify);
+app.post('/cancle/:id', homecontroller.cancle);
 app.get('/logout',(req,res) => {
     req.session.destroy();
     res.redirect('/');
