@@ -625,7 +625,6 @@ exports.modify = function(req, res) {
     let user = '';
 if(req.body.booking_id){
     if(req.body.name !== undefined){
-        // res.redirect(444);
         config.con.query("UPDATE `booking` SET `name`='"+req.body.name+"',`email`='"+req.body.email+"',`mobile`='"+req.body.mobile+"',`country`='"+req.body.country+"',`address`='"+req.body.address+"',`city`='"+req.body.city+"',`additional`='"+req.body.additional+"',`destination`='"+req.body.destination+"',`hotel_id`='"+req.body.hotel_id+"',`checkin`='"+req.body.checkin+"',`checkout`='"+req.body.checkout+"',`room`='"+req.body.room+"',`room_id`='"+req.body.room_id+"',`adults`='"+req.body.adults+"',`child`='"+req.body.child+"',`status`='"+req.body.status+"' WHERE id='"+req.body.booking_id+"'",(err,result) => {
             if(err) console.log(err);
             res.redirect('/');
