@@ -228,7 +228,7 @@ img{border-radius: 10px;}
 			        </div>
 			        <div class="col-md-4">
 			            <div class="form-group">
-			                <input type="text" name="room" id="room" value="Room(s)" class="form-control" style="color: #fff; background: #6ea0e300;" onfocus="if(this.type == 'text') this.type='number';if(this.value == '') this.value=1"">
+			                <input type="text" name="room" id="room" value="Room(s)" class="form-control" style="color: #fff; background: #6ea0e300;" onfocus="if(this.type == 'text') this.type='number';if(this.value == '') this.value=1">
 			            </div>
 			        </div>
 			        <div class="col-md-4">
@@ -257,12 +257,12 @@ img{border-radius: 10px;}
             </div>
             <div class="col-md-4">
                 <div class="form-group">
-                    <input type="text" name="coupon" id="coupon" value="Coupon(s)" class="form-control" style="color: #fff; background: #6ea0e300;">
+                    <input type="text" name="coupon" id="coupon" value="Coupon(s)" class="form-control" style="color: #fff; background: #6ea0e300;" onfocus="this.value=''">
                 </div>
             </div>
 			        <div class="col-md-6">
 			            <div class="form-group mt-2">
-			              <a href="#" placeholder="destination" class="btn btn-success p-2">Modify/Cancel Booking</a>
+			              <a data-bs-toggle="modal" data-bs-target="#exampleModal" placeholder="destination" class="btn btn-success p-2">Modify/Cancel Booking</a>
 			            </div>
 			        </div>
 			        <div class="col-md-6">
@@ -274,12 +274,31 @@ img{border-radius: 10px;}
 			</form>
     </div>
 		</div>
-	
 	</section>
     </div>
   </section><!-- End Hero Section -->
 
-  
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel" style="color:#000;">Modify/Cancel Booking</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <form action="/modify" method="post">
+            <div class="from-group">
+              <input type="text" name="booking_id" class="form-control" placeholder="Enter Booking ID Here">
+            </div>
+            <br>
+            <div class="from-group">
+              <input type="submit" class="form-control btn btn-primary" placeholder="Enter Booking ID Here">
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
     <!-- ======= About Section ======= -->
     <section id="about" >
