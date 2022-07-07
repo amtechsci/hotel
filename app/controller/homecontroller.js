@@ -621,31 +621,7 @@ exports.booking = function(req, res) {
     }
 }
 exports.modify = function(req, res) {
-    session=req.session;
-    let user = '';
-if(req.body.booking_id !== undefined){
-    if(req.body.name !== undefined){
-        config.con.query("UPDATE `booking` SET `name`='"+req.body.name+"',`email`='"+req.body.email+"',`mobile`='"+req.body.mobile+"',`country`='"+req.body.country+"',`address`='"+req.body.address+"',`city`='"+req.body.city+"',`additional`='"+req.body.additional+"',`destination`='"+req.body.destination+"',`hotel_id`='"+req.body.hotel_id+"',`checkin`='"+req.body.checkin+"',`checkout`='"+req.body.checkout+"',`room`='"+req.body.room+"',`room_id`='"+req.body.room_id+"',`adults`='"+req.body.adults+"',`child`='"+req.body.child+"',`status`='"+req.body.status+"' WHERE id='"+req.body.booking_id+"'",(err,result) => {
-            if(err) console.log(err);
-            res.redirect('/');
-        });
-    }else{
-       var bookingId = req.body.booking_id;
-       bookingId = bookingId.replace("SKYDOOR000","");
-       console.log(bookingId);
-        config.con.query("SELECT * FROM `booking` WHERE id='"+bookingId+"'",(err,result) => {
-            if(err) console.log(err);
-            if(result.length > 0){
-                var bookdetail = result[0];
-            }else{
-                res.return('No Booking Found');
-            }
-            res.render('modify',{APP_URL : config.APP_URL,url:req.url,user:user,bookdetail:bookdetail});
-        });
-    }
-}else{
-            res.redirect('/');
-}
+  
 }
 exports.cancle = function(req, res) {
     session=req.session;
