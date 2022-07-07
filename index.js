@@ -8,7 +8,7 @@ var multer = require('multer');
 const app = express();
 const path = require('path');
 app.use(bodyParser.json()); 
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 const crypto = require('crypto');
 const session = require('express-session');
 const cookieParser = require("cookie-parser");
