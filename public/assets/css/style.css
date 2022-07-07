@@ -1767,7 +1767,7 @@ section {
 .testimonial {
   border-right: 4px solid #2a3d7d;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.1);
-  padding: 30px 30px 30px 130px;
+  padding: 30px 30px 30px 30px;
   margin: 0 15px 30px 15px;
   overflow: hidden;
   position: relative;
@@ -1814,6 +1814,7 @@ section {
   color: #6f6f6f;
   line-height: 25px;
   margin-bottom: 15px;
+  height: 120px;
 }
 .testimonial .title {
   display: inline-block;
