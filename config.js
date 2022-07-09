@@ -4,6 +4,7 @@ const config = {}
 config.mysql = mysql,
 config.port = 5003,
 // config.APP_URL = 'http://localhost:'+config.port+'/',
+// config.APP_URL = '54.201.12.52:'+config.port+'/',
 config.APP_URL = 'http://54.185.68.164/',
 config.con = con;
 module.exports = config;
