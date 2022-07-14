@@ -47,6 +47,7 @@ app.get('/loyalty-program-buy/:id', homecontroller.loyalty_program_buy);
 app.post('/loyalty_program_view/:id',upload.any(), homecontroller.loyalty_program_view);
 // app.get('/modify-cancel', homecontroller.modify_can);
 app.post('/modify-cancel', homecontroller.modify_can);
+app.get('/cancel/:id', homecontroller.cancel);
 app.post('/cancel/:id', homecontroller.cancel);
 app.get('/logout',(req,res) => {
     req.session.destroy();
@@ -65,6 +66,7 @@ app.get('/admin/add_rooms',admincontroller.add_rooms);
 app.post('/admin/add_rooms',upload.any(),admincontroller.add_rooms);
 app.get('/admin/users',admincontroller.users);
 app.get('/admin/manage_rooms/:id',admincontroller.manage_rooms);
+app.get('/admin/booking/:id',admincontroller.booking);
 
 
 

@@ -1,7 +1,11 @@
 var exports = module.exports = {}
 const config = require('../../config.js');
 exports.index = function(req, res) {
+    if(session.admin_id !== undefined){
     res.render('super_admin/index',{APP_URL : config.APP_URL});
+    }else{
+        res.redirect('/admin/login');
+    }
 }
 exports.login = function(req, res) {
     session=req.session;
@@ -126,6 +130,17 @@ exports.users = function(req, res) {
     config.con.query("SELECT * FROM user",function (err, result) {
         if (err) throw err;
         res.render('super_admin/users',{APP_URL : config.APP_URL,users : result});
+    });
+    }else{
+        res.redirect('/admin/login');
+    }
+}
+exports.booking = function(req, res) {
+    session=req.session;
+    if(session.admin_id !== undefined){
+    config.con.query("SELECT * FROM booking WHERE status='"+req.params.id+"'",function (err, result) {
+        if (err) throw err;
+        res.render('super_admin/booking',{APP_URL : config.APP_URL,users : result});
     });
     }else{
         res.redirect('/admin/login');

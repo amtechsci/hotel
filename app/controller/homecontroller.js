@@ -743,7 +743,7 @@ if(req.params.id){
             if(result.length > 0){
                 var bookdetail = result[0];
             }else{
-                res.return('No Booking Found');
+                res.send('No Booking Found');
             }
             res.render('modify',{APP_URL : config.APP_URL,url:req.url,user:user,bookdetail:bookdetail});
         });
