@@ -51,6 +51,9 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="row">
+                                          <% if(id == 2){ %>
+                                            <input type="hidden" name="hotel_id" value="">
+                                            <% }else{ %>
                                             <div class="col-md-6">
                                               <select name="hotel_id" class="form-control">
                                                   <option>Choose Hotel</option>
@@ -58,7 +61,7 @@
                                                     <option value="<%=hotel.id%>"><%=hotel.hotel_name%></option>
                                                   <% }) %>
                                               </select>
-                                            </div>
+                                            </div><% } %>
                                             <div class="col-md-6">
                                               <input type="text" class="form-control" name="full_communication_address" placeholder="Full communication address">
                                             </div>

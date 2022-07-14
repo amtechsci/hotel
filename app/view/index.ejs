@@ -286,7 +286,7 @@ img{border-radius: 10px;}
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <form action="modify-cancel" method="post">
+          <form action="<%=APP_URL%>modify-cancel" method="post">
             <div class="from-group">
               <input type="text" name="booking_id" class="form-control" placeholder="Enter Booking ID Here">
             </div>
@@ -627,24 +627,34 @@ img{border-radius: 10px;}
       <div class="col-md-12">
         <div id="testimonial-slider" class="owl-carousel">
           <div class="testimonial">
+            <div class="pic">
+              <img
+                src="https://images.pexels.com/photos/704955/pexels-photo-704955.jpeg">
+            </div>
             <p class="description">
-              I feel fresh in this place. I found the right place to spend quality time with family members and friends and create eternal moments. The view from my room was absolutely serene and perfect for living life with natural views.
+              I feel fresh in this place. I found the right place to spend quality time with family members and friends and create eternal moments. The view from my room was absolutely serene and perfect for living life with natural views.<br><span class="title">PRIYANKA</span>
             </p>
-            <h3 class="title">ANISH</h3>
           </div>
 
           <div class="testimonial">
+            <div class="pic">
+              <img
+                src="https://images.pexels.com/photos/704955/pexels-photo-704955.jpeg">
+            </div>
             <p class="description">
               The hospitality and food was amazing. I got a real taste of different food at this place. I must suggest visitors to spend time over food with their loved ones and enjoy life to the fullest.
+              <br><span class="title">SHUBHAM</span>
             </p>
-            <h3 class="title">ATUL</h3>
           </div>
 
           <div class="testimonial">
+            <div class="pic">
+              <img
+                src="https://images.pexels.com/photos/704955/pexels-photo-704955.jpeg">
+            </div>
             <p class="description">
-              This is a perfect place to organize parties. The ambient was amazing and the staffs were well experienced in their work. You may find the combination of natural views with the different flavors of the various regions together
+              This is a perfect place to organize parties. The ambient was amazing and the staffs were well experienced in their work. You may find the combination of natural views with the different flavors of the various regions together<br><span class="title">VAIBHAB</span>
             </p>
-            <h3 class="title">VAIBHAB</h3>
           </div>
         </div>
       </div>
