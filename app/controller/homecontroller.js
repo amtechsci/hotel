@@ -449,6 +449,24 @@ if(session.user_id !== undefined){
     res.render('privacy_policy',{APP_URL : config.APP_URL,url:req.url,user:user});
 }
 }
+exports.terms_conditions = function(req, res) {
+session=req.session;
+            let user = '';
+if(session.user_id !== undefined){
+    config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
+        if(err){res.redirect('/logout');}else{
+            if(result.length > 0){
+                user = result[0];
+            }else{
+                res.redirect('/logout');
+            }
+        }
+        res.render('terms_conditions',{APP_URL : config.APP_URL,url:req.url,user:user});
+    });
+}else{
+    res.render('privacy_policy',{APP_URL : config.APP_URL,url:req.url,user:user});
+}
+}
 exports.partner_with_as = function(req, res) {
 session=req.session;
             let user = '';
@@ -483,6 +501,24 @@ if(session.user_id !== undefined){
     });
 }else{
     res.render('cancellation_policy',{APP_URL : config.APP_URL,url:req.url,user:user});
+}
+}
+exports.plant_tree = function(req, res) {
+session=req.session;
+            let user = '';
+if(session.user_id !== undefined){
+    config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
+        if(err){res.redirect('/logout');}else{
+            if(result.length > 0){
+                user = result[0];
+            }else{
+                res.redirect('/logout');
+            }
+        }
+        res.render('plant_tree',{APP_URL : config.APP_URL,url:req.url,user:user});
+    });
+}else{
+    res.render('plant_tree',{APP_URL : config.APP_URL,url:req.url,user:user});
 }
 }
 exports.flexible_cancellation = function(req, res) {
@@ -557,6 +593,24 @@ exports.download_brochure = function(req, res) {
         res.render('download_brochure',{APP_URL : config.APP_URL,url:req.url,user:user});
     }
 }
+exports.media_centre = function(req, res) {
+    session=req.session;
+                let user = '';
+    if(session.user_id !== undefined){
+        config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
+            if(err){res.redirect('/logout');}else{
+                if(result.length > 0){
+                    user = result[0];
+                }else{
+                    res.redirect('/logout');
+                }
+            }
+            res.render('media_centre',{APP_URL : config.APP_URL,url:req.url,user:user});
+        });
+    }else{
+        res.render('media_centre',{APP_URL : config.APP_URL,url:req.url,user:user});
+    }
+}
 exports.booked = function(req, res) {
     session=req.session;
     let user = '';
@@ -573,6 +627,24 @@ exports.booked = function(req, res) {
         });
     }else{
         res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id});
+    }
+}
+exports.feedback = function(req, res) {
+    session=req.session;
+    let user = '';
+    if(session.user_id !== undefined){
+        config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
+            if(err){res.redirect('/logout');}else{
+                if(result.length > 0){
+                    user = result[0];
+                }else{
+                    res.redirect('/logout');
+                }
+            }
+            res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id});
+        });
+    }else{
+        res.redirect('/');
     }
 }
 exports.thankyou = function(req, res) {
@@ -685,6 +757,8 @@ exports.contact = function(req, res) {
             if(err) console.log(err);
             res.redirect('thankyou');
         });
+    }else{
+        res.render('contact',{APP_URL : config.APP_URL,url:req.url,user:user});
     }
 }
 exports.login = function(req, res) {
