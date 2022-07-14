@@ -21,12 +21,12 @@
             <% if(user !== ''){ %>
             <li><a class="nav-link scrollto" href="#"><%=user.name%></a></li>
             <li><a class="nav-link scrollto" href="/logout"><i class="fa fa-sign-out" aria-hidden="true" style="font-size:30px;"></i></a></li><% }else{ %>
-            <li><a class="nav-link scrollto" href="#"><i class="fa fa-user" aria-hidden="true" style="font-size:30px;" data-bs-toggle="modal" data-bs-target="#exampleModal"></i></a></li><% } %>
+            <li><a class="nav-link scrollto" href="#"><i class="fa fa-user" aria-hidden="true" style="font-size:30px;" data-bs-toggle="modal" data-bs-target="#loginmodal"></i></a></li><% } %>
           </ul>
         </nav>
               </div><hr class="navhr">
               <div class="atherisdiv">
-                  <nav id="navbar" class="navbar order-last order-lg-0" style="padding:0px;float: right;box-shadow: 1px 1px 3px rgb(0 0 0 / 0%);">
+                  <nav id="navbar" class="navbar order-last order-lg-0" style="padding:0px;float: right;box-shadow: 1px 1px 3px rgb(0 0 0 / 0%);margin-right: 10px;">
           <ul>
             <li><a class="nav-link scrollto active" href="<%=APP_URL%>">HOME</a></li>
               <li><a class="nav-link scrollto" href="<%=APP_URL%>hotels">HOTElS</a></li>

@@ -82,7 +82,7 @@
 </footer>
 <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
       class="bi bi-arrow-up-short"></i></a>
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade" id="loginmodal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -126,7 +126,10 @@
                 <input type="email" class="form-control" name="email" placeholder="Email">
             </div>
             <div class="form-group">
-                <input type="number" class="form-control" name="number" placeholder="Mobile">
+              <div class="row" style="margin: 0px 0px;">
+                <div class="col-2" style="padding:0px;"><input type="number" class="form-control" name="country_code" value="+91"></div>
+                <div class="col-10" style="padding:0px;"><input type="number" class="form-control" name="number" placeholder="Mobile"></div>
+              </div>  
             </div>
             <div class="form-group">
                 <input type="password" class="form-control" name="password" placeholder="Password">
@@ -135,7 +138,7 @@
                 <input type="submit" class="btn btn-primary" value="Register Now">
             </div>
             <div class="form-group">
-                <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Login</a>
+                <a href="#" data-bs-toggle="modal" data-bs-target="#loginmodal">Login</a>
             </div>
         </form>
       </div>

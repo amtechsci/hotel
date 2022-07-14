@@ -521,7 +521,7 @@ border: 2px solid rgba(255, 255, 255, 0.49);
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
-  height: 100vh;
+  /* height: 100vh; */
   background-size: cover;
   overflow: hidden;
   position: relative;
@@ -1980,7 +1980,7 @@ section {
   .atguidlim{display:block;}
   .navbar1{display:none;}
   .atherifdiv{display:none;}
-  .atherisdiv{height:90px;}
+  .atherisdiv{height:60px;}
   .aaseaform{width:100%;}
   #navbar{
       margin:0px!important;
@@ -1990,7 +1990,16 @@ section {
       margin:2px;
   }
   #myVideo{
-    width: auto; height: 95vh;
+    width: auto;
+  }
+  .atheader{
+    height: 60px;
+  }
+  .athelodiv {
+    height: 60px;margin-left: 20px;
+  }
+  #hero .hero-container {
+    justify-content: flex-start;
   }
 }
 
