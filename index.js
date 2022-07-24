@@ -20,7 +20,6 @@ app.use(session({
     cookie: { maxAge: oneDay },
     resave: false
 }));
-
 const storage = multer.diskStorage({
   destination: function(req, file, callback) {
     callback(null, 'public/uploads/');

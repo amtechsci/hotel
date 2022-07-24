@@ -799,3 +799,17 @@ session=req.session;
         res.redirect(req.body.url);
     }
 }
+exports.testpay = function(req, res) {
+    var options = {
+        amount: req.body.amount,  // amount in the smallest currency unit
+        currency: "INR",
+        receipt: "order_rcptid_11"
+      };
+      config.instance.orders.create(options, function(err, order) {
+        // console.log(order);
+        res.send({orderId : order.id});
+      });
+}
+exports.testpaypage = function(req, res) {
+    res.render('testpaypage',{APP_URL : config.APP_URL});
+}

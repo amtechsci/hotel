@@ -49,6 +49,11 @@ app.post('/loyalty_program_view/:id',upload.any(), homecontroller.loyalty_progra
 app.post('/modify-cancel', homecontroller.modify_can);
 app.get('/cancel/:id', homecontroller.cancel);
 app.post('/cancel/:id', homecontroller.cancel);
+app.post('/testpay', homecontroller.testpay);
+app.get('/testpaypage', homecontroller.testpaypage);
+
+
+
 app.get('/logout',(req,res) => {
     req.session.destroy();
     res.redirect('/');
