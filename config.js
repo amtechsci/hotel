@@ -1,5 +1,5 @@
 var mysql = require('mysql');
-var Razorpay = require('Razorpay');
+var Razorpay = require('razorpay');
 var con = mysql.createConnection({host: "hoteldb.c3teariwy0ra.us-west-2.rds.amazonaws.com",port:"3306",user: "admin",password: "Atul8800",database:"hoteldb"});
 var instance = new Razorpay({  key_id: 'rzp_live_1HYbglgcDS6vZg',  key_secret: 'ztg4xjtRb2ZmQ2tkdUjbv3R1',});
 const config = {}
