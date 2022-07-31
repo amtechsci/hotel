@@ -1,5 +1,6 @@
 var exports = module.exports = {}
 const config = require('../../config.js');
+const crypto = require('crypto');
 exports.index = function(req, res) {
 session=req.session;
 if(req.query.email !== undefined){
@@ -19,10 +20,10 @@ if(req.query.email !== undefined){
                             res.redirect('/logout');
                         }
                     }
-                    res.render('index',{APP_URL : config.APP_URL,cities:cities,hotels:hotels,url:req.url,user:user,hid:1});
+                    res.render('index',{APP_URL : config.APP_URL,cities:cities,hotels:hotels,url:req.url,user:user,hid:1,cowin:1});
                 });
             }else{
-            res.render('index',{APP_URL : config.APP_URL,cities:cities,hotels:hotels,url:req.url,user:user,hid:1});
+            res.render('index',{APP_URL : config.APP_URL,cities:cities,hotels:hotels,url:req.url,user:user,hid:1,cowin:1});
             }
         });
     });
@@ -668,11 +669,12 @@ exports.thankyou = function(req, res) {
 exports.booknow = function(req, res) {
     session=req.session;
     let user = '';
-    if(req.body.name !== undefined){
-        config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `status`) VALUES ('"+req.body.name+"','"+req.body.email+"','"+req.body.mobile+"','"+req.body.country+"','"+req.body.address+"','"+req.body.city+"','"+req.body.additional+"','"+req.query.destination+"','"+req.query.hotel+"','"+req.query.checkin+"','"+req.query.checkout+"','"+req.query.room+"','"+req.query.room_id+"','pending')",(err,result) => {
+    if(req.body.body !== undefined){
+        console.log(req.body);
+        var myreq = req.body;
+        config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `status`, `payment_status`,`payment_amount`) VALUES ('"+myreq.body.name+"','"+myreq.body.email+"','"+myreq.body.mobile+"','"+myreq.body.country+"','"+myreq.body.address+"','"+myreq.body.city+"','"+myreq.body.additional+"','"+myreq.query.destination+"','"+myreq.query.hotel+"','"+myreq.query.checkin+"','"+myreq.query.checkout+"','"+myreq.query.room+"','"+myreq.query.room_id+"','pending','paid','"+myreq.body.amount/100+"')",(err,result) => {
             if(err) console.log(err);
-            // console.log(result.insertId);
-            res.redirect('booked/'+result.insertId);
+            res.send({reurl : 'booked/'+result.insertId});
         });
     }else{
     const date = require('date-and-time');
@@ -686,10 +688,10 @@ exports.booknow = function(req, res) {
                     res.redirect('/logout');
                 }
             }
-            res.render('booknow',{APP_URL : config.APP_URL,url:req.url,user:user,date:date,rebo:req.query,hotels:hotels});
+            res.render('booknow',{APP_URL : config.APP_URL,url:req.url,user:user,date:date,rebo:req.query,hotels:hotels,crypto:crypto});
         });
     }else{
-        res.render('booknow',{APP_URL : config.APP_URL,url:req.url,user:user,date:date,rebo:req.query,hotels:hotels[0]});
+        res.render('booknow',{APP_URL : config.APP_URL,url:req.url,user:user,date:date,rebo:req.query,hotels:hotels[0],crypto:crypto});
     }
 });
     }
@@ -806,7 +808,7 @@ exports.testpay = function(req, res) {
         receipt: "order_rcptid_11"
       };
       config.instance.orders.create(options, function(err, order) {
-        // console.log(order);
+        console.log(req.body);
         res.send({orderId : order.id});
       });
 }

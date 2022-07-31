@@ -1,4 +1,6 @@
 <%- include('head'); -%>
+<%- include('nav'); -%>
+<div style="height:100px;"></div>
 <div class="container">
     <center>
         <div class="row">
@@ -6,8 +8,14 @@
             <div class="col-md-6">
                 <div class="card" style="background-image: linear-gradient(#009bff, #88dd85);">
                     <div class="card-body">
-                        <p>Booking Complete</p>
-                        <p>Booking ID: <span>SKYDOOR000<%=id%></span></p>
+                        <center><h3>Booking Complete</h3></center>
+                        <br>
+                        <div style="width:100%; overflow: hidden;"><b style="float:left;">Booking ID:</b> <span style="float:right;">SKYDOOR000<%=id%></span></div>
+                        <div style="width:100%; overflow: hidden;"><b style="float:left;">Name:</b> <span style="float:right;">SKYDOOR000<%=id%></span></div>
+                        <div style="width:100%; overflow: hidden;"><b style="float:left;">Email:</b> <span style="float:right;">SKYDOOR000<%=id%></span></div>
+                        <div style="width:100%; overflow: hidden;"><b style="float:left;">Mobile:</b> <span style="float:right;">SKYDOOR000<%=id%></span></div>
+                        <div style="width:100%; overflow: hidden;"><b style="float:left;">Check-in:</b> <span style="float:right;">SKYDOOR000<%=id%></span></div>
+                        <div style="width:100%; overflow: hidden;"><b style="float:left;">Check-out:</b> <span style="float:right;">SKYDOOR000<%=id%></span></div>
                     </div>
                     <div class="card-body">
                         <span style="font-size:10px;">Terms: Valid till 31st march’2025 for entire group. Voucher can be used against any value-added service at once/per billing/per hotel. Remaining un used amount is not refundable nor transferable.</span>
@@ -23,3 +31,4 @@
 //         window.location.replace('<%=APP_URL%>');
 // }, 5000);
 </script>
+<%- include('foot'); -%>
