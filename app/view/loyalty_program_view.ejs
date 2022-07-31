@@ -10,11 +10,12 @@
                     </div>
                     <div class="card-body">
                         <p><b>Coupon code</b> : <%=coupondata.coupon_no%></p>
-                        <p><b>Member name</b> : <%=coupondata.name%></p>
+                        <p><b>Menber name</b> : <%=coupondata.name%></p>
                         <p><b>Member mobile</b> : <%=coupondata.mobile%></p>
                         <p><b>Date of purchase</b> : <%=coupondata.date_of_purchase%></p>
-                        <p><b>Member Type</b> : <% if(coupondata.member_type == 1){%>Member ship for specific hotel in group<% }else{ %>Member ship for entire group<% } %></p>
+                        <p><b>Member Type</b> : <% if(coupondata.member_type == 1){%>Loyalty card valid for specific single hotel in the sky door hotel group<% }else{ %>Loyalty card valid for all hotels in the sky door hotel group<% } %></p>
                         <p><b>Validity</b> : 1 year from the date of purchase</p>
+                        <p>Membership applicable for <%=coupondata.name%> only</p>
                     </div>
                     <div class="card-body">
                         <span style="font-size:10px;">Terms: This coupon can be used against any value-added services at once/per billing/per hotel, is sky door hotel group. Remaining un used amount is not refundable nor transferable.</span>
