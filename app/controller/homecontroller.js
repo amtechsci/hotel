@@ -110,7 +110,7 @@ config.con.query("SELECT * FROM hotel WHERE hotel_type = 'Service Apartment'",(e
 }
 exports.meet_and_events = function(req, res) {
 session=req.session;
-console.log(req.body);
+// console.log(req.body);
 if(req.body.booking_date !== undefined){
     config.con.query("INSERT INTO `meeet_and_event`(`booking_date`, `booking_time`, `no_of_guest`, `name`, `email`, `phone`, `comment`) VALUES ('"+req.body.booking_date+"','"+req.body.booking_time+"','"+req.body.no_of_guest+"','"+req.body.name+"','"+req.body.email+"','"+req.body.phone+"','"+req.body.comment+"')",(err,result) => {
         if(err) console.log(err);
@@ -136,7 +136,7 @@ if(req.body.booking_date !== undefined){
 }
 exports.loyalty_program = function(req, res) {
 session=req.session;
-console.log(req.body);
+// console.log(req.body);
     if(session.user_id !== undefined){
         config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
             if(err){res.redirect('/logout');}else{
@@ -624,10 +624,14 @@ exports.booked = function(req, res) {
                     res.redirect('/logout');
                 }
             }
-            res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id});
+            config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,book) => {
+                res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id,book:book[0]});
+            });
         });
     }else{
-        res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id});
+        config.con.query("SELECT * FROM booking WHERE id="+req.params.id,(err,book) => {
+            res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id,book:book[0]});
+        });
     }
 }
 exports.feedback = function(req, res) {
@@ -660,17 +664,17 @@ exports.thankyou = function(req, res) {
                     res.redirect('/logout');
                 }
             }
-            res.render('thankyou',{APP_URL : config.APP_URL,url:req.url,user:user});
+            res.render('thankyou',{APP_URL : config.APP_URL,url:req.url,user:user,message:req.params.message});
         });
     }else{
-        res.render('thankyou',{APP_URL : config.APP_URL,url:req.url,user:user});
+        res.render('thankyou',{APP_URL : config.APP_URL,url:req.url,user:user,message:req.params.message});
     }
 }
 exports.booknow = function(req, res) {
     session=req.session;
     let user = '';
     if(req.body.body !== undefined){
-        console.log(req.body);
+        // console.log(req.body);
         var myreq = req.body;
         config.con.query("INSERT INTO `booking`(`name`, `email`, `mobile`, `country`, `address`, `city`, `additional`, `destination`, `hotel_id`, `checkin`, `checkout`, `room`, `room_id`, `status`, `payment_status`,`payment_amount`) VALUES ('"+myreq.body.name+"','"+myreq.body.email+"','"+myreq.body.mobile+"','"+myreq.body.country+"','"+myreq.body.address+"','"+myreq.body.city+"','"+myreq.body.additional+"','"+myreq.query.destination+"','"+myreq.query.hotel+"','"+myreq.query.checkin+"','"+myreq.query.checkout+"','"+myreq.query.room+"','"+myreq.query.room_id+"','pending','paid','"+myreq.body.amount/100+"')",(err,result) => {
             if(err) console.log(err);
@@ -691,7 +695,11 @@ exports.booknow = function(req, res) {
             res.render('booknow',{APP_URL : config.APP_URL,url:req.url,user:user,date:date,rebo:req.query,hotels:hotels,crypto:crypto});
         });
     }else{
-        res.render('booknow',{APP_URL : config.APP_URL,url:req.url,user:user,date:date,rebo:req.query,hotels:hotels[0],crypto:crypto});
+        const date1 = new Date(req.query.checkin);
+        const date2 = new Date(req.query.checkout);
+        const diffTime = Math.abs(date2 - date1);
+        const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        res.render('booknow',{APP_URL : config.APP_URL,url:req.url,user:user,date:date,rebo:req.query,hotels:hotels[0],crypto:crypto,diffDays:diffDays});
     }
 });
     }
@@ -713,14 +721,14 @@ exports.modify_can = function(req, res) {
     let user = '';
 if(req.body.booking_id !== undefined){
     if(req.body.name !== undefined){
-        config.con.query("UPDATE `booking` SET `name`='"+req.body.name+"',`email`='"+req.body.email+"',`mobile`='"+req.body.mobile+"',`country`='"+req.body.country+"',`address`='"+req.body.address+"',`city`='"+req.body.city+"',`additional`='"+req.body.additional+"',`destination`='"+req.body.destination+"',`hotel_id`='"+req.body.hotel_id+"',`checkin`='"+req.body.checkin+"',`checkout`='"+req.body.checkout+"',`room`='"+req.body.room+"',`room_id`='"+req.body.room_id+"',`adults`='"+req.body.adults+"',`child`='"+req.body.child+"',`status`='"+req.body.status+"' WHERE id='"+req.body.booking_id+"'",(err,result) => {
+        config.con.query("UPDATE `booking` SET `name`='"+req.body.name+"',`email`='"+req.body.email+"',`mobile`='"+req.body.mobile+"',`country`='"+req.body.country+"',`address`='"+req.body.address+"',`city`='"+req.body.city+"',`additional`='"+req.body.additional+"' WHERE id='"+req.body.booking_id+"'",(err,result) => {
             if(err) console.log(err);
-            res.redirect('/');
+            res.redirect('/modify-cancel');
         });
     }else{
        var bookingId = req.body.booking_id;
        bookingId = bookingId.replace("SKYDOOR000","");
-       console.log(bookingId);
+    //    console.log(bookingId);
         config.con.query("SELECT * FROM `booking` WHERE id='"+bookingId+"'",(err,result) => {
             if(err) console.log(err);
             if(result.length > 0){
@@ -731,8 +739,8 @@ if(req.body.booking_id !== undefined){
             res.render('modify',{APP_URL : config.APP_URL,url:req.url,user:user,bookdetail:bookdetail});
         });
     }
-}else{
-            res.redirect('/');
+}else{      
+    res.render('alert',{ALERT:'Booking Updated Successfully'});
 }
 }
 exports.cancel = function(req, res) {
@@ -757,7 +765,7 @@ exports.contact = function(req, res) {
     if(req.body.name !== undefined){
         config.con.query("INSERT INTO `contant`(`name`, `mobile`, `email`, `message`) VALUES ('"+req.body.name+"','"+req.body.mobile+"','"+req.body.email+"','"+req.body.message+"')",(err,result) => {
             if(err) console.log(err);
-            res.redirect('thankyou');
+            res.redirect('thankyou/We will reach you soo.');
         });
     }else{
         res.render('contact',{APP_URL : config.APP_URL,url:req.url,user:user});
