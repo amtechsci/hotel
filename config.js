@@ -12,5 +12,4 @@ config.port = 5003,
 config.APP_URL = 'http://skydoorhotels.com/',
 config.con = con;
 module.exports = config;
-
 // mysql -u admin -p -h hoteldb.c3teariwy0ra.us-west-2.rds.amazonaws.com
