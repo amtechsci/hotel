@@ -133,6 +133,7 @@
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
   let coupon = 0;
+  var amount = 0;
   let sub_total = <%=(parseInt(hotels.price)) * (rebo.room * diffDays) %>
   <% if(rebo.coupon == "SKY10"){ %>
     coupon = ((sub_total / 100)*10);
@@ -142,6 +143,7 @@
   var gst = ((parseInt(sub_total)-coupon)/100) * 18;
   $("#gst").html(gst);
   var totalamt = (parseInt(sub_total)-coupon) + gst;
+  amount = totalamt * 100;
   $("#totalamt").html(totalamt);
   $("#breakfast").change(function() {
     if(this.checked) {
@@ -154,6 +156,7 @@
   var gst = ((parseInt(sub_total)-coupon)/100) * 18;
   $("#gst").html(gst);
   totalamt = (parseInt(sub_total)-coupon) + gst;
+  amount = totalamt * 100;
   $("#totalamt").html(totalamt);
     }else{
       sub_total = sub_total - <%=((rebo.room * diffDays) * hotels.breakfast) %>
@@ -165,6 +168,7 @@
   var gst = ((parseInt(sub_total)-coupon)/100) * 18;
   $("#gst").html(gst);
   totalamt = (parseInt(sub_total)-coupon) + gst;
+  amount = totalamt * 100;
   $("#totalamt").html(totalamt);
     }
 });
@@ -180,6 +184,7 @@ $("#dinner").change(function() {
   var gst = ((parseInt(sub_total)-coupon)/100) * 18;
   $("#gst").html(gst);
   totalamt = (parseInt(sub_total)-coupon) + gst;
+  amount = totalamt * 100;
   $("#totalamt").html(totalamt);
     }else{
       sub_total = sub_total - <%=((rebo.room * diffDays) * hotels.dinner) %>
@@ -191,15 +196,14 @@ $("#dinner").change(function() {
   var gst = ((parseInt(sub_total)-coupon)/100) * 18;
   $("#gst").html(gst);
   totalamt = (parseInt(sub_total)-coupon) + gst;
+  amount = totalamt * 100;
   $("#totalamt").html(totalamt);
     }
 });
 </script>
 <script>
-    var orderId ;
-    var amount = totalamt * 100;
-    // var amount = 100;
-$(document).ready(function(){
+    var orderId;
+$("#rzp-button1").click(function(){
     var settings = {
   "url": "/testpay",
   "method": "POST",
