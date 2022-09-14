@@ -47,10 +47,10 @@
                           <textarea class="form-control" name="additional"></textarea>
                         </div><br>
                         <div class="form-group">
-                          <label><span><input type="checkbox" name="breakfast" style="width: 15px; height: 15px;" class="form-check-input"></span> <span>Add breakfast (<%=hotels.breakfast%>)</span></label>
+                          <label><span><input type="checkbox" name="breakfast" style="width: 15px; height: 15px;" class="form-check-input" id="breakfast"></span> <span>Add breakfast (<%=hotels.breakfast%>)</span></label>
                         </div><br>
                         <div class="form-group">
-                          <label><span><input type="checkbox" name="breakfast" style="width: 15px; height: 15px;" class="form-check-input"></span> <span>Add dinner (<%=hotels.dinner%>)</span></label>
+                          <label><span><input type="checkbox" name="dinner" style="width: 15px; height: 15px;" class="form-check-input" id="dinner"></span> <span>Add dinner (<%=hotels.dinner%>)</span></label>
                         </div><br><br>
                         <div class="form-group">
                           <input type="submit" class="btn btn-success" value="Complete Booking" id="rzp-button1">
@@ -90,19 +90,19 @@
                           <p style="text-align: justify;">Sub Total</p>
                         </div>
                         <div class="col-6">
-                        <p>₹<% let sub_total = (parseInt(hotels.price)) * (rebo.room * diffDays) %><%=sub_total%><br></p>
+                        <p>₹<span id="sub_total"></span><br></p>
                         </div>
                         <div class="col-6">
                           <p style="text-align: justify;">Taxes and Fees</p>
                         </div>
                         <div class="col-6">
-                        <p>₹<%=(parseInt(sub_total)/100) * 18 %><br></p>
+                        <p>₹<span id="gst"></span><br></p>
                         </div>
                         <div class="col-6">
                           <p style="text-align: justify;">Total</p>
                         </div>
                         <div class="col-6">
-                        <p>₹<% var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18) %><%=totalamt%><br>
+                        <p>₹<span id="totalamt"></span><br>
                           (INR tax included )</p>
                         </div>
                         </div>
@@ -124,8 +124,46 @@
 <button id="rzp-button1">Pay</button>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+  let sub_total = <%=(parseInt(hotels.price)) * (rebo.room * diffDays) %>
+  $("#sub_total").html(sub_total);
+  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  $("#totalamt").html(totalamt);
+  $("#gst").html((parseInt(sub_total)/100) * 18);
+  $("#breakfast").change(function() {
+    if(this.checked) {
+      sub_total = sub_total + <%=((rebo.room * diffDays) * hotels.breakfast) %>
+  $("#sub_total").html(sub_total);
+  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  $("#totalamt").html(totalamt);
+  $("#gst").html((parseInt(sub_total)/100) * 18);
+    }else{
+      sub_total = sub_total - <%=((rebo.room * diffDays) * hotels.breakfast) %>
+  $("#sub_total").html(sub_total);
+  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  $("#totalamt").html(totalamt);
+  $("#gst").html((parseInt(sub_total)/100) * 18);
+    }
+});
+
+$("#dinner").change(function() {
+    if(this.checked) {
+      sub_total = sub_total + <%=((rebo.room * diffDays) * hotels.dinner) %>
+  $("#sub_total").html(sub_total);
+  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  $("#totalamt").html(totalamt);
+  $("#gst").html((parseInt(sub_total)/100) * 18);
+    }else{
+      sub_total = sub_total - <%=((rebo.room * diffDays) * hotels.dinner) %>
+  $("#sub_total").html(sub_total);
+  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  $("#totalamt").html(totalamt);
+  $("#gst").html((parseInt(sub_total)/100) * 18);
+    }
+});
+</script>
+<script>
     var orderId ;
-    var amount = <%=totalamt%> * 100;
+    var amount = totalamt * 100;
     // var amount = 100;
 $(document).ready(function(){
     var settings = {
