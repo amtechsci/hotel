@@ -92,6 +92,14 @@
                         <div class="col-6">
                         <p>₹<span id="sub_total"></span><br></p>
                         </div>
+                        <% if(rebo.coupon == "SKY10"){ %>
+                          <div class="col-6">
+                            <p style="text-align: justify;">Coupon (<%=rebo.coupon%>)</p>
+                          </div>
+                          <div class="col-6">
+                          <p>-₹<span id="coupon"></span><br></p>
+                          </div>
+                          <% } %>
                         <div class="col-6">
                           <p style="text-align: justify;">Taxes and Fees</p>
                         </div>
@@ -124,40 +132,66 @@
 <button id="rzp-button1">Pay</button>
 <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
 <script>
+  let coupon = 0;
   let sub_total = <%=(parseInt(hotels.price)) * (rebo.room * diffDays) %>
+  <% if(rebo.coupon == "SKY10"){ %>
+    coupon = ((sub_total / 100)*10);
+    $("#coupon").html(((sub_total / 100)*10));
+  <% }  %>
   $("#sub_total").html(sub_total);
-  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  var gst = ((parseInt(sub_total)-coupon)/100) * 18;
+  $("#gst").html(gst);
+  var totalamt = (parseInt(sub_total)-coupon) + gst;
   $("#totalamt").html(totalamt);
-  $("#gst").html((parseInt(sub_total)/100) * 18);
   $("#breakfast").change(function() {
     if(this.checked) {
       sub_total = sub_total + <%=((rebo.room * diffDays) * hotels.breakfast) %>
+      <% if(rebo.coupon == "SKY10"){ %>
+    coupon = ((sub_total / 100)*10);
+    $("#coupon").html(((sub_total / 100)*10));
+  <% }  %>
   $("#sub_total").html(sub_total);
-  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  var gst = ((parseInt(sub_total)-coupon)/100) * 18;
+  $("#gst").html(gst);
+  totalamt = (parseInt(sub_total)-coupon) + gst;
   $("#totalamt").html(totalamt);
-  $("#gst").html((parseInt(sub_total)/100) * 18);
     }else{
       sub_total = sub_total - <%=((rebo.room * diffDays) * hotels.breakfast) %>
+      <% if(rebo.coupon == "SKY10"){ %>
+    coupon = ((sub_total / 100)*10);
+    $("#coupon").html(((sub_total / 100)*10));
+  <% }  %>
   $("#sub_total").html(sub_total);
-  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  var gst = ((parseInt(sub_total)-coupon)/100) * 18;
+  $("#gst").html(gst);
+  totalamt = (parseInt(sub_total)-coupon) + gst;
   $("#totalamt").html(totalamt);
-  $("#gst").html((parseInt(sub_total)/100) * 18);
     }
 });
 
 $("#dinner").change(function() {
     if(this.checked) {
       sub_total = sub_total + <%=((rebo.room * diffDays) * hotels.dinner) %>
+      <% if(rebo.coupon == "SKY10"){ %>
+    coupon = ((sub_total / 100)*10);
+    $("#coupon").html(((sub_total / 100)*10));
+  <% }  %>
   $("#sub_total").html(sub_total);
-  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  var gst = ((parseInt(sub_total)-coupon)/100) * 18;
+  $("#gst").html(gst);
+  totalamt = (parseInt(sub_total)-coupon) + gst;
   $("#totalamt").html(totalamt);
-  $("#gst").html((parseInt(sub_total)/100) * 18);
     }else{
       sub_total = sub_total - <%=((rebo.room * diffDays) * hotels.dinner) %>
+      <% if(rebo.coupon == "SKY10"){ %>
+    coupon = ((sub_total / 100)*10);
+    $("#coupon").html(((sub_total / 100)*10));
+  <% }  %>
   $("#sub_total").html(sub_total);
-  var totalamt = parseInt(sub_total) + ((parseInt(sub_total)/100) * 18);
+  var gst = ((parseInt(sub_total)-coupon)/100) * 18;
+  $("#gst").html(gst);
+  totalamt = (parseInt(sub_total)-coupon) + gst;
   $("#totalamt").html(totalamt);
-  $("#gst").html((parseInt(sub_total)/100) * 18);
     }
 });
 </script>
