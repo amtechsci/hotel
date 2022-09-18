@@ -2020,7 +2020,7 @@ a.btn {
     font-family: montserrat, sans-serif;
     font-weight: 700;
     font-size: 13px;
-    text-transform: uppercase;
+    
     outline: none
 }
 
@@ -2106,7 +2106,7 @@ a.btn {
 #mobile-nav ul li a {
     color: #fff;
     font-size: 13px;
-    text-transform: uppercase;
+    
     overflow: hidden;
     padding: 10px 22px 10px 15px;
     position: relative;
@@ -2401,7 +2401,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 
 #call-to-action .cta-btn {
     font-family: montserrat, sans-serif;
-    text-transform: uppercase;
+    
     font-weight: 500;
     font-size: 16px;
     letter-spacing: 1px;
@@ -2521,7 +2521,7 @@ body.mobile-nav-active #mobile-nav-toggle {
     line-height: 20px;
     color: #666;
     border-radius: 4px;
-    text-transform: uppercase;
+    
     background: #fff;
     margin-bottom: 5px;
     transition: all .3s ease-in-out

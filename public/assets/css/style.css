@@ -95,7 +95,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 .section-header h2 {
   font-size: 36px;
-  text-transform: uppercase;
+  
   text-align: center;
   font-weight: 700;
   margin-bottom: 10px;
@@ -137,7 +137,7 @@ h1, h2, h3, h4, h5, h6 {
   
   font-weight: 700;
   letter-spacing: 3px;
-  text-transform: uppercase;
+  
 }
 #header #logo h1 span {
   color: #0063b2ff;
@@ -562,7 +562,7 @@ border: 2px solid rgba(255, 255, 255, 0.49);
   
   font-size: 56px;
   font-weight: 600;
-  text-transform: uppercase;
+  
 }
 #hero h1 span {
   color: #0063b2ff;
@@ -1326,7 +1326,7 @@ border: 2px solid rgba(255, 255, 255, 0.49);
   font-size: 18px;
   margin-bottom: 15px;
   font-weight: bold;
-  text-transform: uppercase;
+  
   color: #112363;
 }
 #contact .contact-info a {
@@ -1490,7 +1490,7 @@ border: 2px solid rgba(255, 255, 255, 0.49);
   font-size: 13px;
   font-weight: bold;
   color: #fff;
-  text-transform: uppercase;
+  
   position: relative;
   padding-bottom: 12px;
   border-bottom: 2px solid #0063b2ff;
@@ -1593,7 +1593,7 @@ border: 2px solid rgba(255, 255, 255, 0.49);
   font-weight: 700;
   margin-bottom: 10px;
   font-size: 18px;
-  text-transform: uppercase;
+  
 }
 .why-us .icon-box .title a {
   color: #343a40;
@@ -1817,7 +1817,7 @@ section {
   display: inline-block;
   font-size: 20px;
   font-weight: 700;
-  text-transform: uppercase;
+  
   letter-spacing: 1px;
   color: #29d18b;
   margin: 0;
