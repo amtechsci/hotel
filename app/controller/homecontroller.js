@@ -341,7 +341,7 @@ if(req.body.name !== undefined){
     // console.log(req.files);
     config.con.query("INSERT INTO `career`(`name`, `mobile`, `email`, `current_position`, `language`, `skill`, `current_salary`, `apply_for`, `expected_salary`, `cv`, `message`) VALUES ('"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"')",(err,result) => {
         if(err) console.log(err);
-        res.redirect('/career');
+        res.redirect('thankyou/We will reach you soon.');
     });
 }else{
 if(session.user_id !== undefined){
@@ -765,7 +765,7 @@ exports.contact = function(req, res) {
     if(req.body.name !== undefined){
         config.con.query("INSERT INTO `contant`(`name`, `mobile`, `email`, `message`) VALUES ('"+req.body.name+"','"+req.body.mobile+"','"+req.body.email+"','"+req.body.message+"')",(err,result) => {
             if(err) console.log(err);
-            res.redirect('thankyou/We will reach you soo.');
+            res.redirect('thankyou/We will reach you soon.');
         });
     }else{
         res.render('contact',{APP_URL : config.APP_URL,url:req.url,user:user});
