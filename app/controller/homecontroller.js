@@ -637,20 +637,7 @@ exports.booked = function(req, res) {
 exports.feedback = function(req, res) {
     session=req.session;
     let user = '';
-    if(session.user_id !== undefined){
-        config.con.query("SELECT * FROM user WHERE id="+session.user_id,(err,result) => {
-            if(err){res.redirect('/logout');}else{
-                if(result.length > 0){
-                    user = result[0];
-                }else{
-                    res.redirect('/logout');
-                }
-            }
-            res.render('booked',{APP_URL : config.APP_URL,url:req.url,user:user,id:req.params.id});
-        });
-    }else{
-        res.redirect('/');
-    }
+    res.render('feedback',{APP_URL : config.APP_URL,url:req.url,user:user});
 }
 exports.thankyou = function(req, res) {
     session=req.session;
