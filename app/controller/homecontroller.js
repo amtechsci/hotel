@@ -341,7 +341,7 @@ if(req.body.name !== undefined){
     // console.log(req.files);
     config.con.query("INSERT INTO `career`(`name`, `mobile`, `email`, `current_position`, `language`, `skill`, `current_salary`, `apply_for`, `expected_salary`, `cv`, `message`) VALUES ('"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"')",(err,result) => {
         if(err) console.log(err);
-        res.redirect('thankyou/We will reach you soon.');
+        res.redirect('thankyou/We are in receipt of your application. One of our HR representative will connect with you with in 15 days if your profile is short listed. For more job updates kindly follow us on our social media job portals.');
     });
 }else{
 if(session.user_id !== undefined){
