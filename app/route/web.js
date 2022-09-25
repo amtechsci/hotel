@@ -51,6 +51,7 @@ app.get('/cancel/:id', homecontroller.cancel);
 app.post('/cancel/:id', homecontroller.cancel);
 app.post('/testpay', homecontroller.testpay);
 app.get('/testpaypage', homecontroller.testpaypage);
+app.get('/mail', homecontroller.mail);
 
 
 

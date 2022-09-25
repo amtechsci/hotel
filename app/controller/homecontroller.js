@@ -1,6 +1,7 @@
 var exports = module.exports = {}
 const config = require('../../config.js');
 const crypto = require('crypto');
+const nodemailer = require("nodemailer");
 exports.index = function(req, res) {
 session=req.session;
 if(req.query.email !== undefined){
@@ -339,9 +340,28 @@ if(req.body.name !== undefined){
         }
     });
     // console.log(req.files);
-    config.con.query("INSERT INTO `career`(`name`, `mobile`, `email`, `current_position`, `language`, `skill`, `current_salary`, `apply_for`, `expected_salary`, `cv`, `message`) VALUES ('"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"','"+req.body.name+"')",(err,result) => {
+    config.con.query("INSERT INTO `career`(`name`, `mobile`, `email`, `current_position`, `language`, `skill`, `current_salary`, `apply_for`, `expected_salary`, `cv`, `message`) VALUES ('"+req.body.name+"','"+req.body.cc+req.body.mobile+"','"+req.body.email+"','"+req.body.current_position+"','"+req.body.language+"','"+req.body.skill+"','"+req.body.current_salary+"','"+req.body.apply_for+"','"+req.body.expected_salary+"','"+req.body.cv+"','"+req.body.message+"')",(err,result) => {
         if(err) console.log(err);
         res.redirect('thankyou/We are in receipt of your application. One of our HR representative will connect with you with in 15 days if your profile is short listed. For more job updates kindly follow us on our social media job portals.');
+        var mess = "name : "+req.body.email+"',Mobile : "+req.body.cc+req.body.mobile+"',email "+req.body.email+"',current_position "+req.body.current_position+"',language "+req.body.language+"',skill "+req.body.skill+"',current_salary "+req.body.current_salary+"',apply_for "+req.body.apply_for+"',expected_salary "+req.body.expected_salary+"',message "+req.body.message+"'";
+        var request = require('request');
+var options = {
+  'method': 'GET',
+  'url': 'http://localhost:5003/mail?to=mishrapintu8800@gmail.com&subject=Career&message=',
+  'headers': {
+    'Cookie': 'connect.sid=s%3Ay5vOW7KatUr30uGv90Rbxkb3eN_XhoZf.yf28BCuSgR1ov7Eqt1LHyvPPqhd5LywcdPzMXwKD19k'
+  },
+  formData: {
+    'to': 'mishrapintu8800@gmail.com',
+    'subject': 'hello',
+    'message': 'test'
+  }
+};
+request(options, function (error, response) {
+  if (error) throw new Error(error);
+  console.log(response.body);
+});
+
     });
 }else{
 if(session.user_id !== undefined){
@@ -809,4 +829,31 @@ exports.testpay = function(req, res) {
 }
 exports.testpaypage = function(req, res) {
     res.render('testpaypage',{APP_URL : config.APP_URL});
+}
+exports.mail = function(req, res) {
+async function main() {
+  let testAccount = await nodemailer.createTestAccount();
+  let transporter = nodemailer.createTransport({
+    host: "smtp.hostinger.com",
+    port: 465,
+    secure: true, // true for 465, false for other ports
+    auth: {
+      user: 'no-reply@demowebsites.co.in', // generated ethereal user
+      pass: 'No!@#$%^&*0', // generated ethereal password
+    },
+  });
+  let info = await transporter.sendMail({
+    from: '"No Reply" <no-reply@demowebsites.co.in>', // sender address
+    to: req.query.to+", "+req.query.to, // list of receivers
+    // subject: "Hello ✔", // Subject line
+    // text: "Hello world?", // plain text body
+    // html: "<b>Hello world?</b>", // html body
+    // to: req.query.to, 
+      subject: req.query.subject,
+      text: '', // plain text body
+      html: req.query.message,
+  });
+  res.json({"status":1});
+}
+main().catch(console.error);
 }
