@@ -347,14 +347,9 @@ if(req.body.name !== undefined){
         var request = require('request');
 var options = {
   'method': 'GET',
-  'url': 'http://localhost:5003/mail?to=mishrapintu8800@gmail.com&subject=Career&message=',
+  'url': 'http://localhost:5003/mail?to=chandrabir.singh@skydoorhotels.com&subject=Career&message=',
   'headers': {
     'Cookie': 'connect.sid=s%3Ay5vOW7KatUr30uGv90Rbxkb3eN_XhoZf.yf28BCuSgR1ov7Eqt1LHyvPPqhd5LywcdPzMXwKD19k'
-  },
-  formData: {
-    'to': 'mishrapintu8800@gmail.com',
-    'subject': 'hello',
-    'message': 'test'
   }
 };
 request(options, function (error, response) {
