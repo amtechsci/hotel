@@ -197,6 +197,7 @@ $("#dinner").change(function() {
   $("#gst").html(gst);
   totalamt = (parseInt(sub_total)-coupon) + gst;
   amount = totalamt * 100;
+  amount = Math.round(amount);
   $("#totalamt").html(totalamt);
     }
 });
