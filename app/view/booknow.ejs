@@ -196,7 +196,7 @@ $("#dinner").change(function() {
   var gst = ((parseInt(sub_total)-coupon)/100) * 18;
   $("#gst").html(gst);
   totalamt = (parseInt(sub_total)-coupon) + gst;
-  amount = totalamt * 100;
+  amount = totalamt * 100; 
   amount = Math.round(amount);
   $("#totalamt").html(totalamt);
     }
