@@ -39,7 +39,7 @@ var upload = multer({storage:storage,fileFilter: (req, file, cb) => {
   }});
 var authRoute = require('./app/route/web.js')(app,upload);
 app.use(express.static('public'));
-config.con.connect();
+//config.con.connect();
 
 app.set('views', './app/view');
 app.set('view engine', 'ejs');
